@@ -1,0 +1,15 @@
+name: OhWild
+version: ${project.version}
+author: Stian "1stian" Tofte
+website: https://ohneemc.com
+main: com.ohneemc.OhWild.OhWild
+depend: [PlaceholderAPI]
+api-version: "1.14"
+prefix: OhWild
+commands:
+  wild:
+    description: Teleports you to a random location.
+    usage: /wild
+    aliases: [rtp, wilderness]
+    permission: OhWild.use
+    permission-message: You do not have access to this command /wild.
