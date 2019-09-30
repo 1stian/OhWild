@@ -3,46 +3,48 @@
 #--------------------OhWild--------------------
 #-------------OhWild---------------------------
 #------OhWild----------------------------------
-#By Stian "1stian" Tofte
+# Created by Stian "1stian" Tofte
+# https://ohneemc.com
 #
 
 debug: false
 settings:
-  #How often you may use the command. In seconds.
+  # How often you may use the command. In seconds.
   cooldown: 10
-  #What item to use to fill rest of the inventory slots.
+  # What item to use to fill rest of the inventory slots.
   fillitem: GRAY_STAINED_GLASS_PANE
-  #Size of the inventory
+  # Size of the inventory
   size: 27
-  #GUI name
+  # GUI name
   guiname: "&aOhWild"
-  #Blocks not to land on
+  # Blocks not to land on
   unsafeblocks:
     - lava
     - water
     - air
 worlds:
+  # World names need to be exact as the world name(Same as the folder).
   world:
-    #What item to show for this world.
+    # What item to show for this world.
     item: oxeye_daisy
-    #Wich position you want it in.
+    # Wich position you want it in.
     position: 12
-    #Name for the item
+    # Name for the item
     name: Overworld
-    #Item lore
+    # Item lore
     lore:
       - "Random location"
       - "In the normal world"
       - "Have fun"
     radius: 5000
   world_nether:
-    #What item to show for this world.
+    # What item to show for this world.
     item: nether_star
-    #Wich position you want it in.
+    # Wich position you want it in.
     position: 14
-    #Name for the item
+    # Name for the item
     name: The nether
-    #Item lore
+    # Item lore
     lore:
       - "Random location"
       - "In the nether world"
