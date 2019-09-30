@@ -40,7 +40,7 @@ worlds:
   world_nether:
     # What item to show for this world.
     item: nether_star
-    # Wich position you want it in.
+    # Which position you want it in.
     position: 14
     # Name for the item
     name: The nether
