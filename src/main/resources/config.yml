@@ -27,7 +27,7 @@ worlds:
   world:
     # What item to show for this world.
     item: oxeye_daisy
-    # Wich position you want it in.
+    # Which position you want it in.
     position: 12
     # Name for the item
     name: Overworld
