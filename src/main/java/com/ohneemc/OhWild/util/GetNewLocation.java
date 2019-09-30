@@ -42,7 +42,7 @@ public class GetNewLocation {
         Location check = new Location(world, x, i, z);
         while (i > 0) {
             if (!materials.contains(new Location(world, x, i, z).getBlock().getType())) {
-                return new Location(world, x, i, z).add(0, 2, 0);
+                return new Location(world, x, i, z).add(0, 0, 0);
             } else {
                 if (materials.contains(check.getBlock().getType()) && check.getBlock().getType() != Material.AIR) {
                     notSafe = true;
