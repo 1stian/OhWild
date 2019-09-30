@@ -9,7 +9,7 @@
 
 debug: false
 settings:
-  # How often you may use the command. In seconds.
+  # How often you may use the command. In seconds. -1 to disable.
   cooldown: 10
   # What item to use to fill rest of the inventory slots.
   fillitem: GRAY_STAINED_GLASS_PANE
