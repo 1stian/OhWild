@@ -3,6 +3,7 @@ package com.ohneemc.OhWild;
 import com.ohneemc.OhWild.task.InvListener;
 import com.ohneemc.OhWild.util.Config;
 import com.ohneemc.OhWild.util.GetNewLocation;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,6 +19,9 @@ public class OhWild extends JavaPlugin {
     @SuppressWarnings("ConstantConditions")
     public void onEnable(){
         instance = this;
+        //Metrics
+        Metrics metrics = new Metrics(this);
+        //Config part
         saveDefaultConfig();
         reloadConfig();
         //Register command
