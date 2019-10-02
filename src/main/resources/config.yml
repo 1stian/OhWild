@@ -21,7 +21,7 @@ settings:
   unsafeblocks:
     - lava
     - water
-    - air
+    - air # Do not remove this one....
 worlds:
   # World names need to be exact as the world name(Same as the folder).
   world:
@@ -36,6 +36,7 @@ worlds:
       - "Random location"
       - "In the normal world"
       - "Have fun"
+    # Radius around spawn that the player may be teleported to.
     radius: 5000
   world_nether:
     # What item to show for this world.
@@ -49,4 +50,12 @@ worlds:
       - "Random location"
       - "In the nether world"
       - "Have fun"
+    # Radius around spawn that the player may be teleported to.
     radius: 2500
+messages:
+  # Customizable messages. Leave empty to disable.
+  #
+  # Cooldown message, will be shown when a player uses the command before the cooldown is gone.
+  cooldown: "{time} seconds before you can use wild again."
+  # Message that will be shown for the player after a teleport.
+  teleport: "Swosh"
