@@ -2,6 +2,7 @@ package com.ohneemc.OhWild.task;
 
 import com.ohneemc.OhWild.OhWild;
 import com.ohneemc.OhWild.util.Config;
+import com.ohneemc.OhWild.util.CooldownManager;
 import com.ohneemc.OhWild.util.GetNewLocation;
 import com.ohneemc.OhWild.util.Maps;
 import org.bukkit.*;
@@ -12,6 +13,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 public class InvListener implements Listener {
     private static Location location = null;
+    private static String teleportMessage = Config.getString("messages.teleport");
 
     @EventHandler
     public static void invListener(InventoryClickEvent event){
@@ -36,12 +38,16 @@ public class InvListener implements Listener {
                 return;
             }
 
+            if (teleportMessage.length() > 1){
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', teleportMessage));
+            }
             player.closeInventory();
             startTask(player, world);
         }
     }
 
     private static void startTask(Player player, World world){
+        CooldownManager.setCooldown(player.getUniqueId(), System.currentTimeMillis());
         Bukkit.getScheduler().runTaskAsynchronously(OhWild.instance, () -> {
             location = GetNewLocation.getLocation(world);
             if (location == null || location.add(0, 2, 0).getBlock().getType() != Material.AIR) {
