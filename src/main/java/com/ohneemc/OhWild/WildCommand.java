@@ -1,5 +1,6 @@
 package com.ohneemc.OhWild;
 
+import com.ohneemc.OhWild.util.Config;
 import com.ohneemc.OhWild.util.CooldownManager;
 import com.ohneemc.OhWild.util.CreateInventory;
 import org.bukkit.ChatColor;
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class WildCommand implements CommandExecutor {
 
-    private final CooldownManager cooldownManager = new CooldownManager();
+    private final String cooldownMessage = Config.getString("messages.cooldown");
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -21,13 +22,14 @@ public class WildCommand implements CommandExecutor {
             Player player = ((Player) sender).getPlayer();
             Inventory inv = CreateInventory.createWildInventory(player);
             if (player != null && inv != null) {
-                long timeLeft = System.currentTimeMillis() - cooldownManager.getCooldown(player.getUniqueId());
+                long timeLeft = System.currentTimeMillis() - CooldownManager.getCooldown(player.getUniqueId());
                 if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) > CooldownManager.DEFAULT_COOLDOWN || CooldownManager.DEFAULT_COOLDOWN == -1){
-                    cooldownManager.setCooldown(player.getUniqueId(), System.currentTimeMillis());
                     player.openInventory(inv);
                 }else{
                     long seconds = (TimeUnit.MILLISECONDS.toSeconds(timeLeft) - CooldownManager.DEFAULT_COOLDOWN);
-                    player.sendMessage(ChatColor.GOLD + String.valueOf(seconds) + ChatColor.GREEN + " seconds before you can use wild again.");
+                    String strip = String.valueOf(seconds).replace("-", "");
+                    String message = cooldownMessage.replace("{time}", strip);
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
                 }
                 return true;
             }
