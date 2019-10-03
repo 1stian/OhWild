@@ -3,7 +3,6 @@ version: ${project.version}
 author: Stian "1stian" Tofte
 website: https://ohneemc.com
 main: com.ohneemc.OhWild.OhWild
-depend: [PlaceholderAPI]
 api-version: "1.14"
 prefix: OhWild
 commands:
