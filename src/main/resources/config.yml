@@ -56,6 +56,6 @@ messages:
   # Customizable messages. Leave empty to disable.
   #
   # Cooldown message, will be shown when a player uses the command before the cooldown is gone.
-  cooldown: "{time} seconds before you can use wild again."
+  cooldown: "&a{time} &7seconds before you can use wild again."
   # Message that will be shown for the player after a teleport.
-  teleport: "Swosh"
+  teleport: "&aSwosh"
