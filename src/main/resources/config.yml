@@ -59,3 +59,4 @@ messages:
   cooldown: "&a{time} &7seconds before you can use wild again."
   # Message that will be shown for the player after a teleport.
   teleport: "&aSwosh"
+ConfigVersion: 1.0
