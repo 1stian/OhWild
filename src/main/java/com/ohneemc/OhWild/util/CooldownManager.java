@@ -6,11 +6,11 @@ import java.util.UUID;
 
 public class CooldownManager {
 
-    private final Map<UUID, Long> cooldowns = new HashMap<>();
+    private static final Map<UUID, Long> cooldowns = new HashMap<>();
 
     public static final int DEFAULT_COOLDOWN = Config.getInteger("settings.cooldown");
 
-    public void setCooldown(UUID player, long time){
+    public static void setCooldown(UUID player, long time){
         if(time < 1) {
             cooldowns.remove(player);
         } else {
@@ -18,7 +18,7 @@ public class CooldownManager {
         }
     }
 
-    public long getCooldown(UUID player){
+    public static long getCooldown(UUID player){
         return cooldowns.getOrDefault(player, 0L);
     }
 }
