@@ -26,10 +26,12 @@ public class WildCommand implements CommandExecutor {
                 if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) > CooldownManager.DEFAULT_COOLDOWN || CooldownManager.DEFAULT_COOLDOWN == -1){
                     player.openInventory(inv);
                 }else{
-                    long seconds = (TimeUnit.MILLISECONDS.toSeconds(timeLeft) - CooldownManager.DEFAULT_COOLDOWN);
-                    String strip = String.valueOf(seconds).replace("-", "");
-                    String message = cooldownMessage.replace("{time}", strip);
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                    if (cooldownMessage.length() > 1) {
+                        long seconds = (TimeUnit.MILLISECONDS.toSeconds(timeLeft) - CooldownManager.DEFAULT_COOLDOWN);
+                        String strip = String.valueOf(seconds).replace("-", "");
+                        String message = cooldownMessage.replace("{time}", strip);
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                    }
                 }
                 return true;
             }
