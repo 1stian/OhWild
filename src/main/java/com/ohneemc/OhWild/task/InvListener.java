@@ -11,6 +11,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
+import java.util.concurrent.TimeUnit;
+
 public class InvListener implements Listener {
     private static Location location = null;
     private static String teleportMessage = Config.getString("messages.teleport");
@@ -42,7 +44,23 @@ public class InvListener implements Listener {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', teleportMessage));
             }
             player.closeInventory();
-            startTask(player, world);
+
+            if (CooldownManager.DEFAULT_PRWORLD){
+                long timeLeft = System.currentTimeMillis() - Maps.worldCooldown.get(clickedItem);
+                if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) > Maps.worldCooldown.get(clickedItem) || Maps.worldCooldown.get(clickedItem) == -1){
+                    startTask(player, world);
+                }else{
+                    String cooldownMessage = Config.getString("worlds." + world.getName() + ".message");
+                    if (cooldownMessage.length() > 1) {
+                        long seconds = (TimeUnit.MILLISECONDS.toSeconds(timeLeft) - Maps.worldCooldown.get(clickedItem));
+                        String strip = String.valueOf(seconds).replace("-", "");
+                        String message = cooldownMessage.replace("{time}", strip);
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                    }
+                }
+            }else{
+                startTask(player, world);
+            }
         }
     }
 
