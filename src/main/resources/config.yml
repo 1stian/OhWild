@@ -11,6 +11,8 @@ debug: false
 settings:
   # How often you may use the command. In seconds. -1 to disable.
   cooldown: 10
+  # Cooldown for each world.
+  enabled: false
   # What item to use to fill rest of the inventory slots.
   fillitem: GRAY_STAINED_GLASS_PANE
   # Size of the inventory
@@ -27,6 +29,8 @@ worlds:
   world:
     # What item to show for this world.
     item: oxeye_daisy
+    # Cooldown(Only works if cooldown for each world is set under settings section)
+    cooldown: 10
     # Which position you want it in.
     position: 12
     # Name for the item
@@ -41,6 +45,8 @@ worlds:
   world_nether:
     # What item to show for this world.
     item: nether_star
+    # Cooldown(Only works if cooldown for each world is set under settings section)
+    cooldown: 10
     # Which position you want it in.
     position: 14
     # Name for the item
@@ -59,4 +65,4 @@ messages:
   cooldown: "&a{time} &7seconds before you can use wild again."
   # Message that will be shown for the player after a teleport.
   teleport: "&aSwosh"
-ConfigVersion: 1.0
+ConfigVersion: 1.1
