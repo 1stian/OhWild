@@ -32,6 +32,14 @@ public class InvListener implements Listener {
             event.setCancelled(true);
         }
 
+        if (event.getCurrentItem() == null){
+            return;
+        }
+
+        if (event.getCurrentItem().getItemMeta() == null){
+            return;
+        }
+
         String clickedItem = event.getCurrentItem().getItemMeta().getDisplayName();
         if (Maps.itemWorld.containsKey(clickedItem)){
             World world = Bukkit.getWorld(Maps.itemWorld.get(clickedItem));
@@ -46,17 +54,25 @@ public class InvListener implements Listener {
             player.closeInventory();
 
             if (CooldownManager.DEFAULT_PRWORLD){
-                long timeLeft = System.currentTimeMillis() - Maps.worldCooldown.get(clickedItem);
-                if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) > Maps.worldCooldown.get(clickedItem) || Maps.worldCooldown.get(clickedItem) == -1){
-                    startTask(player, world);
-                }else{
-                    String cooldownMessage = Config.getString("worlds." + world.getName() + ".message");
-                    if (cooldownMessage.length() > 1) {
-                        long seconds = (TimeUnit.MILLISECONDS.toSeconds(timeLeft) - Maps.worldCooldown.get(clickedItem));
-                        String strip = String.valueOf(seconds).replace("-", "");
-                        String message = cooldownMessage.replace("{time}", strip);
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                long timeLeft = System.currentTimeMillis() - CooldownManager.getCooldown(player.getUniqueId());
+                if (CooldownManager.getWorld(player.getUniqueId()) != null){
+                    if (!CooldownManager.getWorld(player.getUniqueId()).equalsIgnoreCase(clickedItem)){
+                        startTask(player, world);
+                    }else{
+                        if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) > Maps.worldCooldown.get(clickedItem) || Maps.worldCooldown.get(clickedItem) == -1){
+                            startTask(player, world);
+                        }else{
+                            String cooldownMessage = Config.getString("worlds." + world.getName() + ".message");
+                            if (cooldownMessage.length() > 1) {
+                                long seconds = (TimeUnit.MILLISECONDS.toSeconds(timeLeft) - Maps.worldCooldown.get(clickedItem));
+                                String strip = String.valueOf(seconds).replace("-", "");
+                                String message = cooldownMessage.replace("{time}", strip);
+                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                            }
+                        }
                     }
+                }else{
+                    startTask(player, world);
                 }
             }else{
                 startTask(player, world);

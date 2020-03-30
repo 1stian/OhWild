@@ -56,7 +56,7 @@ public class CreateInventory {
                 toAdd.setItemMeta(meta);
 
                 int pos = Config.getInteger("worlds." + items + ".position");
-                Maps.worldCooldown.put(toAdd.getItemMeta().getDisplayName(), Config.getInteger("worlds." + items + ".cooldown"));
+                Maps.worldCooldown.put(itemName, Config.getInteger("worlds." + items + ".cooldown"));
 
                 Maps.itemWorld.put(toAdd.getItemMeta().getDisplayName(), items);
                 posFilled.add(pos);

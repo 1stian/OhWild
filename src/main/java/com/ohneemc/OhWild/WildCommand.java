@@ -27,6 +27,7 @@ public class WildCommand implements CommandExecutor {
 
                 if (DEFAULT_PRWORLD){
                     player.openInventory(inv);
+                    return true;
                 }else{
                     if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) > CooldownManager.DEFAULT_COOLDOWN || CooldownManager.DEFAULT_COOLDOWN == -1){
                         player.openInventory(inv);
