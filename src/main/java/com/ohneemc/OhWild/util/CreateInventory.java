@@ -33,6 +33,10 @@ public class CreateInventory {
         }
         ItemStack empty = new ItemStack(fillItem);
         ItemMeta emptyMeta = empty.getItemMeta();
+
+        if (emptyMeta == null)
+            return null;
+
         emptyMeta.setDisplayName(" ");
         empty.setItemMeta(emptyMeta);
 
@@ -51,6 +55,15 @@ public class CreateInventory {
                 }
                 ItemStack toAdd = new ItemStack(itemMaterial);
                 ItemMeta meta = toAdd.getItemMeta();
+
+                if (toAdd.getItemMeta() == null){
+                    return null;
+                }
+
+                if (meta == null){
+                    return null;
+                }
+
                 meta.setDisplayName(itemName);
                 meta.setLore(lore);
                 toAdd.setItemMeta(meta);
