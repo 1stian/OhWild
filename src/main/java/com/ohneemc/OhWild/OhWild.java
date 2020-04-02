@@ -20,7 +20,8 @@ public class OhWild extends JavaPlugin {
     public void onEnable(){
         instance = this;
         //Metrics
-        Metrics metrics = new Metrics(this);
+        int pluginId = 5721;
+        Metrics metrics = new Metrics(this, pluginId);
         //Config part
         saveDefaultConfig();
         reloadConfig();
