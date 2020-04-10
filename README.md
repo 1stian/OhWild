@@ -5,13 +5,6 @@
 ##
 [![CodeFactor](https://www.codefactor.io/repository/github/realnaits/ohwild/badge)](https://www.codefactor.io/repository/github/realnaits/ohwild)
 
- ## Installation
-1. Download the plugin
-2. Drop it in the server plugin directory
-3. Restart the server to create the config file
-4. Edit the config file to fit your server(With world names and so on)
-5. Restart again, and you're done!
-
 ## ![features](https://ohneemc.com/img/plugins/ohwild/Features2.png)
 1. GUI for choosing what world they want to be teleported in.
 2. GUI is customizable (Empty slot item, pr world item, item name and lore)
@@ -26,20 +19,12 @@ Command: `/wild`
 Permission:
 `ohwild.use`
 
-Installation
-Download the plugin
-Drop it in the server plugin directory
-Restart the server to create the config file
-Edit the config file to fit your server(With world names and so on)
-Restart again, and you're done!
-
-
-GUI for choosing what world they want to be teleported in.
-GUI is customizable (Empty slot item, pr world item, item name and lore)
-What position the item is placed on.
-Cooldown for each time they may use the random teleport.
-Size of the GUI.
-Choose what blocks that are not safe to land on.
+## Installation
+1. Download the plugin
+2. Drop it in the server plugin directory
+3. Restart the server to create the config file
+4. Edit the config file to fit your server(With world names and so on)
+5. Restart again, and you're done!
 
 ## ![Todo](https://ohneemc.com/img/plugins/ohwild/Todo.png)
 1. Make messages all configurable. - DONE
