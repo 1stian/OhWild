@@ -22,7 +22,10 @@ public class Config {
      */
     public static boolean getBoolean(String location){
         try {return OhWild.instance.getConfig().getBoolean(location);}
-        catch (Exception e) {error(e); return false;}
+        catch (Exception e) {
+            error(e);
+            return false;
+        }
     }
 
     /**
@@ -31,7 +34,10 @@ public class Config {
      */
     public static int getInteger(String location){
         try {return OhWild.instance.getConfig().getInt(location);}
-        catch (Exception e) {error(e); return 0;}
+        catch (Exception e) {
+            error(e);
+            return 0;
+        }
     }
 
     /**
@@ -40,7 +46,10 @@ public class Config {
      */
     public static String getString(String location) {
         try {return OhWild.instance.getConfig().getString(location);}
-        catch (Exception e) {error(e); return "";}
+        catch (Exception e) {
+            error(e);
+            return "";
+        }
     }
 
     /**
@@ -49,7 +58,10 @@ public class Config {
      */
     public static double getDouble(String location) {
         try {return OhWild.instance.getConfig().getDouble(location);}
-        catch (Exception e) {error(e); return 0.0;}
+        catch (Exception e) {
+            error(e);
+            return 0.0;
+        }
     }
 
     /**
@@ -58,18 +70,27 @@ public class Config {
      */
     public static List<String> getList(String location){
         try {return OhWild.instance.getConfig().getStringList(location);}
-        catch (Exception e) {error(e); return new ArrayList<>();}
+        catch (Exception e) {
+            error(e);
+            return new ArrayList<>();
+        }
     }
 
     public static ConfigurationSection getSection(String section){
         try {return OhWild.instance.getConfig().getConfigurationSection(section);}
-        catch (Exception e) {error(e); return null;}
+        catch (Exception e) {
+            error(e);
+            return null;
+        }
     }
 
     public static boolean reloadConfig(){
         try {
             OhWild.instance.reloadConfig();
             return true;
-        }catch (Exception e) {error(e); return false;}
+        }catch (Exception e) {
+            error(e);
+            return false;
+        }
     }
 }
