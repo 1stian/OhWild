@@ -45,6 +45,7 @@ public class OhWild extends JavaPlugin {
             }
             GetNewLocation.materials.add(material);
         }
+        GetNewLocation.materials.add(Material.AIR);
     }
 
     public void onDisable(){
