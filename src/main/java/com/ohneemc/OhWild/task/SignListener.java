@@ -44,21 +44,25 @@ public class SignListener implements Listener {
                 String line2 = ChatColor.stripColor(sign.getLine(1));
 
                 if (line1.equalsIgnoreCase("[Wild]")){
-                    if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) > CooldownManager.DEFAULT_COOLDOWN || CooldownManager.DEFAULT_COOLDOWN == -1){
-                        World world = OhWild.instance.getServer().getWorld(line2.toLowerCase());
-                        if (world == null){
-                            player.sendMessage(ChatColor.RED + "World name is invalid. Can't teleport.");
+                    if (player.hasPermission("ohwild.sign") || player.isOp()){
+                        if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) > CooldownManager.DEFAULT_COOLDOWN || CooldownManager.DEFAULT_COOLDOWN == -1){
+                            World world = OhWild.instance.getServer().getWorld(line2.toLowerCase());
+                            if (world == null){
+                                player.sendMessage(ChatColor.RED + "World name is invalid. Can't teleport.");
+                            }else{
+                                player.sendMessage(ChatColor.GREEN + "Swosh");
+                                startTask(player, world);
+                            }
                         }else{
-                            player.sendMessage(ChatColor.GREEN + "Swosh");
-                            startTask(player, world);
+                            if (cooldownMessage.length() > 1) {
+                                long seconds = (TimeUnit.MILLISECONDS.toSeconds(timeLeft) - CooldownManager.DEFAULT_COOLDOWN);
+                                String strip = String.valueOf(seconds).replace("-", "");
+                                String message = cooldownMessage.replace("{time}", strip);
+                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                            }
                         }
                     }else{
-                        if (cooldownMessage.length() > 1) {
-                            long seconds = (TimeUnit.MILLISECONDS.toSeconds(timeLeft) - CooldownManager.DEFAULT_COOLDOWN);
-                            String strip = String.valueOf(seconds).replace("-", "");
-                            String message = cooldownMessage.replace("{time}", strip);
-                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
-                        }
+                        player.sendMessage(ChatColor.GREEN + "You don't have access to use Wild signs!");
                     }
                 }
             }
@@ -77,15 +81,21 @@ public class SignListener implements Listener {
         }
 
         if (line1.equalsIgnoreCase("[Wild]")){
-            String wName = line2.toLowerCase();
-            World world = OhWild.instance.getServer().getWorld(wName);
-            if (world == null){
-                player.sendMessage(ChatColor.RED + "World name is invalid.");
+            if (player.hasPermission("ohwild.sign.create") || player.isOp()){
+                String wName = line2.toLowerCase();
+                World world = OhWild.instance.getServer().getWorld(wName);
+                if (world == null){
+                    player.sendMessage(ChatColor.RED + "World name is invalid.");
+                }else{
+                    event.setLine(0, ChatColor.GOLD + "[" + ChatColor.GREEN + "Wild" + ChatColor.GOLD + "]");
+                    event.setLine(1, ChatColor.AQUA + wName);
+                    player.sendMessage(ChatColor.GREEN + "Teleport sign successfully created!");
+                }
             }else{
-                event.setLine(0, ChatColor.GOLD + "[" + ChatColor.GREEN + "Wild" + ChatColor.GOLD + "]");
-                event.setLine(1, ChatColor.AQUA + wName);
-                player.sendMessage(ChatColor.GREEN + "Teleport sign successfully created!");
+                player.sendMessage(ChatColor.GREEN + "You don't have access to create Wild signs!");
+                event.getBlock().breakNaturally();
             }
+
         }
     }
 }
