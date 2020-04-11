@@ -1,6 +1,7 @@
 package com.ohneemc.OhWild;
 
 import com.ohneemc.OhWild.task.InvListener;
+import com.ohneemc.OhWild.task.SignListener;
 import com.ohneemc.OhWild.util.Config;
 import com.ohneemc.OhWild.util.GetNewLocation;
 import org.bstats.bukkit.Metrics;
@@ -31,6 +32,8 @@ public class OhWild extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new InvListener(), this);
         //Start various tasks.
         fillUnsafe();
+        //Add sign materials
+        signMaterials();
     }
 
     private static void fillUnsafe(){
@@ -46,6 +49,24 @@ public class OhWild extends JavaPlugin {
             GetNewLocation.materials.add(material);
         }
         GetNewLocation.materials.add(Material.AIR);
+    }
+
+    private static void signMaterials(){
+        //Normal signs
+        SignListener.signMaterials.add(Material.OAK_SIGN);
+        SignListener.signMaterials.add(Material.SPRUCE_SIGN);
+        SignListener.signMaterials.add(Material.ACACIA_SIGN);
+        SignListener.signMaterials.add(Material.BIRCH_SIGN);
+        SignListener.signMaterials.add(Material.DARK_OAK_SIGN);
+        SignListener.signMaterials.add(Material.JUNGLE_SIGN);
+
+        //Wall signs
+        SignListener.signMaterials.add(Material.SPRUCE_WALL_SIGN);
+        SignListener.signMaterials.add(Material.ACACIA_WALL_SIGN);
+        SignListener.signMaterials.add(Material.BIRCH_WALL_SIGN);
+        SignListener.signMaterials.add(Material.DARK_OAK_WALL_SIGN);
+        SignListener.signMaterials.add(Material.OAK_WALL_SIGN);
+        SignListener.signMaterials.add(Material.JUNGLE_WALL_SIGN);
     }
 
     public void onDisable(){
