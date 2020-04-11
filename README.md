@@ -14,10 +14,22 @@
 6. Choose what blocks that are not safe to land on.
 
 ## Commands and Permissions
-Command: `/wild`
+| Command        | Permission   |
+| ------------- |:-------------:|
+| /wild      | ohwild.use |
 
-Permission:
-`ohwild.use`
+| Permissions      | Description |
+| ------------ |:-------------:|
+| ohwild.use | Gives access to /wild gui
+| ohwild.sign | Gives access to use teleportation by signs
+| ohwild.sign.create | Gives access to create teleportation signs.
+
+## Sign Structure
+| Lines | Description |
+| ----------- |:----------:|
+| 1 | [Wild] |
+| 2 | WorldName
+| 3-4 | Whatever you would like it to be
 
 ## Installation
 1. Download the plugin
