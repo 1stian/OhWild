@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.ArrayList;
@@ -38,12 +39,17 @@ public class SignListener implements Listener {
         if (signMaterials.contains(event.getClickedBlock().getType())){
             if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK){
                 Sign sign = (Sign) event.getClickedBlock().getState();
-                if (sign.getLine(1).equalsIgnoreCase("[Wild]")){
+
+                String line1 = ChatColor.stripColor(sign.getLine(0));
+                String line2 = ChatColor.stripColor(sign.getLine(1));
+
+                if (line1.equalsIgnoreCase("[Wild]")){
                     if (TimeUnit.MILLISECONDS.toSeconds(timeLeft) > CooldownManager.DEFAULT_COOLDOWN || CooldownManager.DEFAULT_COOLDOWN == -1){
-                        World world = OhWild.instance.getServer().getWorld(sign.getLine(2).toLowerCase());
+                        World world = OhWild.instance.getServer().getWorld(line2.toLowerCase());
                         if (world == null){
-                            player.sendMessage("World name is invalid. Can't teleport.");
+                            player.sendMessage(ChatColor.RED + "World name is invalid. Can't teleport.");
                         }else{
+                            player.sendMessage(ChatColor.GREEN + "Swosh");
                             startTask(player, world);
                         }
                     }else{
@@ -55,6 +61,23 @@ public class SignListener implements Listener {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onSignPlace(SignChangeEvent event){
+        Player player = event.getPlayer();
+
+        if (event.getLine(0).equalsIgnoreCase("[Wild]")){
+            String wName = event.getLine(1).toLowerCase();
+            World world = OhWild.instance.getServer().getWorld(wName);
+            if (world == null){
+                player.sendMessage(ChatColor.RED + "World name is invalid.");
+            }else{
+                event.setLine(0, ChatColor.GOLD + "[" + ChatColor.GREEN + "Wild" + ChatColor.GOLD + "]");
+                event.setLine(1, ChatColor.AQUA + wName);
+                player.sendMessage(ChatColor.GREEN + "Teleport sign successfully created!");
             }
         }
     }
