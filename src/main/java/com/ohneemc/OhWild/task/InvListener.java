@@ -80,7 +80,7 @@ public class InvListener implements Listener {
         }
     }
 
-    private static void startTask(Player player, World world){
+    static void startTask(Player player, World world){
         CooldownManager.setCooldown(player.getUniqueId(), System.currentTimeMillis());
         Bukkit.getScheduler().runTaskAsynchronously(OhWild.instance, () -> {
             location = GetNewLocation.getLocation(world);
