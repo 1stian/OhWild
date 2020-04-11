@@ -12,3 +12,17 @@ commands:
     aliases: [rtp, wilderness]
     permission: OhWild.use
     permission-message: You do not have access to this command /wild.
+permissions:
+  ohwild.*:
+    default: false
+    description: Access to all features
+    children:
+      OhWild.use: true
+      ohwild.sign: true
+      ohwild.sign.create: true
+  ohwild.sign:
+    description: Access to teleport by using signs.
+    default: false
+  ohwild.sign.create:
+    description: Able to create teleport signs.
+    default: false
