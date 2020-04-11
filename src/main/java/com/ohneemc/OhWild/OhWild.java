@@ -30,6 +30,7 @@ public class OhWild extends JavaPlugin {
         getCommand("wild").setExecutor(new WildCommand());
         //Register listeners
         getServer().getPluginManager().registerEvents(new InvListener(), this);
+        getServer().getPluginManager().registerEvents(new SignListener(), this);
         //Start various tasks.
         fillUnsafe();
         //Add sign materials
