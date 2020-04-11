@@ -69,8 +69,15 @@ public class SignListener implements Listener {
     public void onSignPlace(SignChangeEvent event){
         Player player = event.getPlayer();
 
-        if (event.getLine(0).equalsIgnoreCase("[Wild]")){
-            String wName = event.getLine(1).toLowerCase();
+        String line1 = event.getLine(0);
+        String line2 = event.getLine(1);
+
+        if (line1 == null || line2 == null){
+            return;
+        }
+
+        if (line1.equalsIgnoreCase("[Wild]")){
+            String wName = line2.toLowerCase();
             World world = OhWild.instance.getServer().getWorld(wName);
             if (world == null){
                 player.sendMessage(ChatColor.RED + "World name is invalid.");
