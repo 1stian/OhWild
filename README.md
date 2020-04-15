@@ -4,6 +4,7 @@
 ![gif3](https://ohneemc.com/img/plugins/ohwild/Teleport.gif)
 ##
 [![CodeFactor](https://www.codefactor.io/repository/github/realnaits/ohwild/badge)](https://www.codefactor.io/repository/github/realnaits/ohwild)
+[![Build Status](https://travis-ci.org/realNaits/OhWild.svg?branch=master)](https://travis-ci.org/realNaits/OhWild)
 
 ## ![features](https://ohneemc.com/img/plugins/ohwild/Features2.png)
 1. GUI for choosing what world they want to be teleported in.
